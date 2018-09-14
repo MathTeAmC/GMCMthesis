@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/W32TeX) (preloaded format=xelatex 2018.4.8)  13 SEP 2018 11:21
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/W32TeX) (preloaded format=xelatex 2018.4.8)  13 SEP 2018 22:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1909,32 +1909,6 @@ LaTeX Info: Redefining \nameref on input line 12.
 
 File: figures/logo.pdf Graphic file (type QTm)
  <use  "figures/logo.pdf" >
-
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!
-! fontspec error: "font-not-found"
-! 
-! The font "STXinwei" cannot be found.
-! 
-! See the fontspec documentation for further information.
-! 
-! For immediate help type H <return>.
-!...............................................  
-                                                  
-l.15  \maketitle
-                
-|'''''''''''''''''''''''''''''''''''''''''''''''
-| A font might not be found for many reasons.
-|  Check the spelling, where the font is installed etc. etc.
-| 
-|  When in doubt, ask someone for help!
-|...............................................
-
-*************************************************
-* fontspec warning: "script-not-exist"
-* 
-* Font 'STXinwei' does not contain script 'CJK'.
-*************************************************
 \g__fontspec_family_STXinwei_int=\count289
 .................................................
 . fontspec info: "no-font-shape"
@@ -1951,48 +1925,6 @@ l.15  \maketitle
 . 
 . Could not resolve font "STXinwei/I" (it probably doesn't exist).
 .................................................
-
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!
-! fontspec error: "font-not-found"
-! 
-! The font "STXinwei" cannot be found.
-! 
-! See the fontspec documentation for further information.
-! 
-! For immediate help type H <return>.
-!...............................................  
-                                                  
-l.15  \maketitle
-                
-|'''''''''''''''''''''''''''''''''''''''''''''''
-| A font might not be found for many reasons.
-|  Check the spelling, where the font is installed etc. etc.
-| 
-|  When in doubt, ask someone for help!
-|...............................................
-
-
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!
-! fontspec error: "font-not-found"
-! 
-! The font "STXinwei" cannot be found.
-! 
-! See the fontspec documentation for further information.
-! 
-! For immediate help type H <return>.
-!...............................................  
-                                                  
-l.15  \maketitle
-                
-|'''''''''''''''''''''''''''''''''''''''''''''''
-| A font might not be found for many reasons.
-|  Check the spelling, where the font is installed etc. etc.
-| 
-|  When in doubt, ask someone for help!
-|...............................................
-
 .................................................
 . fontspec info: "defining-font"
 . 
@@ -2001,10 +1933,12 @@ l.15  \maketitle
 .  
 .  This font family consists of the following NFSS series/shapes:
 .  
-. - 'normal' (m/n) with NFSS spec.: <->"STXinwei/OT"
-. - 'small caps'  (m/sc) with NFSS spec.: <->"STXinwei/OT"
+. - 'normal' (m/n) with NFSS spec.:
+. <->"STXinwei/OT:script=hani;language=DFLT;"
+. - 'small caps'  (m/sc) with NFSS spec.: 
 .................................................
 File: figures/title.pdf Graphic file (type QTm)
+
 <use  "figures/title.pdf" >
 (c:/texlive/2017/texmf-dist/tex/latex/amsfonts/umsa.fd)
 (c:/texlive/2017/texmf-dist/tex/latex/amsfonts/umsb.fd)
@@ -2195,25 +2129,8 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                \kern 2.00792pt
 (hyperref)                removed on input line 102.
 
-[4]
-
-Package natbib Warning: Citation `mittelbach_latex_2004' on page 5 undefined on
- input line 114.
-
-
-Package natbib Warning: Citation `wright_latex3_2009' on page 5 undefined on in
-put line 114.
-
-
-Package natbib Warning: Citation `beeton_unicode_2008' on page 5 undefined on i
-nput line 114.
-
-
-Package natbib Warning: Citation `vieth_experiences_2009' on page 5 undefined o
-n input line 114.
-
-No file example.bbl.
-[5] (c:/texlive/2017/texmf-dist/tex/latex/listings/lstlang1.sty
+[4] (./example.bbl) [5]
+(c:/texlive/2017/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
 \g__fontspec_family_FangSong_int=\count292
@@ -2246,18 +2163,15 @@ File: lstlang1.sty 2015/06/04 1.6 listings language file
 .................................................
 
 
-Package Listings Warning: Text dropped after begin of listing on input line 126
+Package Listings Warning: Text dropped after begin of listing on input line 124
 .
 
-
-Package natbib Warning: There were undefined citations.
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 148.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 146.
 [6]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 148.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 146.
  (./example.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 148.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 148.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 146.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 146.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -2265,12 +2179,12 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
  )
 (\end occurred when \iftrue on line 15 was incomplete) 
 Here is how much of TeX's memory you used:
- 32127 strings out of 493005
- 595568 string characters out of 6137957
- 663406 words of memory out of 5000000
- 35662 multiletter control sequences out of 15000+600000
- 11931 words of font info for 95 fonts, out of 8000000 for 9000
+ 32138 strings out of 493005
+ 595876 string characters out of 6137957
+ 663619 words of memory out of 5000000
+ 35670 multiletter control sequences out of 15000+600000
+ 11939 words of font info for 96 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 63i,10n,78p,10440b,1636s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 63i,10n,78p,10464b,1636s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 Output written on example.pdf (7 pages).
