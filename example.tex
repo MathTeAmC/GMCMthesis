@@ -4,9 +4,13 @@
 \documentclass[bwprint]{gmcmthesis}
 %一个改变表格高度的宏包
 \usepackage{array}
+%多行公式
+\usepackage{amsmath}
+\usepackage{amssymb}
 %引用图片宏包
 \usepackage{caption}
 \usepackage{graphicx, subfig}
+\usepackage{longtable}
 \bibliographystyle{gmcm}
 \title{全国研究生数学建模竞赛论文标题}
 \baominghao{18102510035} %参赛队号
@@ -175,7 +179,7 @@
 \mathit{F}_2(x_1,x_2,\cdots,x_D) \\ 
 \vdots \\ 
 \mathit{F}_d(x_1,x_2,\cdots,x_D)
-\end{matrix}\right)
+\end{matrix}\right).
 \end{equation}
 得到低维空间$\mathit{R}^d$中的向量$\mathit{Y}=(y_1,y_2,\cdots,y_d)^T$。本文假设高维数据到低维空间上的映射是线性映射。因此对于问题一，本文采用主成分分析(Principle Component Analysis,PCA)来进行降维。PCA将数据的主成分(包含信息量大的维度)保留下来，忽略掉对数据描述不重要的成分。即将主成分维度组成的向量空间作为低维空间，将高维数据投影到这个空间上就完成了降维的工作。
 
@@ -190,12 +194,12 @@
 \begin{matrix}
 \mathit{X}_1 & \mathit{X}_2 & \cdots & \mathit{X}_p
 \end{matrix} 
-\right)  
+\right).  
 \end{equation}
 用数据矩阵$\mathit{X}_{np}$的$p$个向量$\mathit{X}_1$,$\mathit{X}_2$,$\mathit{X}_p$作线性组合为：
 
 \begin{equation}
-\mathit{F}_i=a_{i1}\mathit{X}_1+a_{i2}\mathit{X}_2+\cdots+a_{ip}\mathit{X}_p(i=1,2,\cdots,p)
+\mathit{F}_i=a_{i1}\mathit{X}_1+a_{i2}\mathit{X}_2+\cdots+a_{ip}\mathit{X}_p(i=1,2,\cdots,p).
 \label{1} 
 \end{equation}
 
@@ -213,7 +217,7 @@
 	a_{21} & a_{22} & \cdots & a_{2p} \\ 
 	\vdots & \vdots & \vdots & \vdots \\ 
 	a_{p1} & a_{p2} & \cdots & a_{pp}
-	\end{matrix} \right) 
+	\end{matrix} \right).
 \end{equation}
 
 求$A$的特征值和特征向量可通过正交变换$T$使
@@ -223,12 +227,12 @@
 	& \lambda_2 &  &  \\ 
 	&  & \ddots &  \\ 
 	&  &  & \lambda_p
-	\end{matrix}  \right) 
+	\end{matrix}  \right). 
 \end{equation}
 
 按照累积方差贡献率$\frac{\sum_{j=1}^k\lambda_j}{\sum_{j=1}^pr_{jj}}= \dfrac{\sum_{j=1}^k\lambda_j}{p}>85\%$从而建立前$k$个主成分：
 \begin{equation}
-\mathit{F}_i=a_{i1}\mathit{X}_1+a_{i2}\mathit{X}_2+\cdots+a_{ip}\mathit{X}_p(i=1,2,\cdots,k)
+\mathit{F}_i=a_{i1}\mathit{X}_1+a_{i2}\mathit{X}_2+\cdots+a_{ip}\mathit{X}_p(i=1,2,\cdots,k).
 \end{equation}
 
 \subsubsection{数据聚类}
@@ -242,30 +246,183 @@
 
 由于财产损失模块和人员伤亡模块的样本数据具有特征(feature)和标签(label)。因此对于这2个模块，我们采用监督学习的方法来构建，本质上就是找到特征和标签间的映射。对于不良社会影响模块，根据专家知识来构建较为合理。
 
-本文先对人员伤亡贝叶斯网络模块的构建进行分析，财产损失的构建方法类似。人员伤亡贝叶斯网络模块中的节点，表示对人员伤亡评估有意义的情报信息或者经过情报机构的专业人员通过数据融合获得的信息。表表示
-对于人员伤亡模块，有人员伤亡1个类节点和15个属性节点。	
+本文先对人员伤亡贝叶斯网络模块的构建进行分析，财产损失的构建方法类似。人员伤亡贝叶斯网络模块中的节点，表示对人员伤亡评估有意义的情报信息或者经过情报机构的专业人员通过数据融合获得的信息。表\ref{贝叶斯网络结构中的节点变量说明}表示对于人员伤亡模块，有人员伤亡1个类节点和15个属性节点。
+%\begin{longtable}[!hbt]
+%	\centering
+%	\caption{贝叶斯网络结构中的节点变量说明}
+%	\toprule  %添加表格头部粗线
+%	node ID& node name& node size& node value\\
+%	\midrule  %添加表格中横线
+%	1& date& 2& 1=双休日\\
+%	&&& 0=工作日\\
+%	2& country& & 采用ISO国际标准国家代码，见附录\\
+%	3& region& 12& 1=北美\\
+%	&&& 2=中美洲和加勒比海地区\\
+%	&&& 3=南美\\
+%	&&& 4=东亚\\
+%	&&& 5=东南亚\\
+%	&&& 6=南亚\\
+%	&&& 7=中亚\\
+%	&&& 8=西欧\\
+%	&&& 9=东欧\\
+%	&&& 10=中东和北非\\
+%	&&& 11=撒哈拉以南的非洲\\
+%	&&& 12=澳大利亚和大洋洲\\
+%	4& crit1(政治、经济、宗教或社会目标)& 2&  1=“是”事件满足标准1\\
+%	&&& 0=“否”事件不满足标准1或者没有明确表明满足标准1\\
+%	5& cite2(意图胁迫、恐吓或煽动更多的群众)& 2& 1=“是”事件满足标准1\\
+%	&&& 0=“否”事件不满足标准1或者没有明确表明满足标准1\\
+%	6& cite3(超出国际人道主义法律范围)& 2& 1=“是”事件满足标准1\\
+%	&&& 0=“否”事件不满足标准1或者没有明确表明满足标准1\\
+%	7& success(成功的攻击)& 12& 1=“是”这一事件是成功的\\
+%	&&& 0=“否”这一事件不成功的\\
+%	8& suicide(自杀式袭击)& 2& 1=“是”这一事件是自杀式袭击\\
+%	&&& 0=“否”没有任何迹象表明，该事件是一个自杀式袭击\\
+%	9& attacktype& 9& 1=暗杀\\
+%	&&& 2=武装袭击\\
+%	&&& 3=轰炸/爆炸\\
+%	&&& 4=劫持\\
+%	&&& 5=劫持人质（路障事件）\\
+%	&&& 6=劫持人质（绑架）\\
+%	&&& 7=设施/基础设施攻击\\
+%	&&& 8=徒手攻击\\
+%	&&& 9=未知\\
+%	10& targtype& 22& 1=商业\\
+%	&&& 2=政府（一般意义）\\
+%	&&& 3=警察\\
+%	&&& 4=军事\\
+%	&&& 5=流产有关\\
+%	&&& 6=机场和飞机\\
+%	&&& 7=政府（外交）\\
+%	&&& 8=教育机构\\
+%	&&& 9=食物或水供应\\
+%	&&& 10=新闻记者\\
+%	&&& 11=海事（包括港口和海上设施）\\
+%	&&& 12=非政府组织（NGO） \\
+%	&&& 13=其他\\
+%	&&& 14=公民自身和私有财产\\
+%	&&& 15=宗教人物/机构\\
+%	&&& 16=电信\\
+%	&&& 17=恐怖分子/非州立民兵组织\\
+%	&&& 18=游客\\
+%	&&& 19=运输（航空除外）\\
+%	&&& 20=未知\\
+%	&&& 21=公用事业\\
+%	&&& 22=暴力政党\\
+%	11& weaptype& 13& 1=生物武器\\
+%	&&& 2=化学武器\\
+%	&&& 3=放射性武器\\
+%	&&& 4=核武器\\
+%	&&& 5=轻武器\\
+%	&&& 6=爆炸物/炸弹/炸药\\
+%	&&& 7=假武器\\
+%	&&& 8=燃烧武器\\
+%	&&& 9=致乱武器\\
+%	&&& 10=交通工具\\
+%	&&& 11=破坏设备\\
+%	&&& 12=其他\\
+%	&&& 13=未知\\
+%	12& kill& n& n=死亡总人数减去凶手死亡人数\\
+%	13& wound& n& n=受伤总人数减去凶手受伤人数\\
+%	14& propexten(财产损害程度)& 4& 1=灾难性的\\
+%	&&& 2=重大的\\
+%	&&& 3=较小的\\
+%	&&& 4=未知\\
+%	15& extended(持续事件)& 2& 1=“是”事件的持续时间达到24个小时以上\\
+%	&&& 0=“否”事件的持续时间不到24小时\\
+%	\bottomrule %添加表格底部粗线
+%	\label{贝叶斯网络结构中的节点变量说明}
+%\end{longtable} 
+	
 
-对于本文的人员伤亡模块，其节点变量较少，所以文本用打分搜索方法中的K2算法来构建贝叶斯网络。这个算法需要指定结点的先验顺序。节点顺序主要包括领域知识或节点偏序指定的约束。为了确定唯一的初始节点序，我们首先基于定向后的最大权重跨度树对节点块排序，结点块的排序是唯一的，然后再采用局部完全有向无环图法对块内节点排序，最终得到所有节点的排序结构如图。
+对于本文的人员伤亡模块，其节点变量较少，所以文本用打分搜索方法中的K2算法来构建贝叶斯网络。这个算法需要指定结点的先验顺序。节点顺序主要包括领域知识或节点偏序指定的约束。为了确定唯一的初始节点序，我们首先基于定向后的最大权重跨度树对节点块排序，结点块的排序是唯一的，然后再采用局部完全有向无环图法对块内节点排序，最终得到所有节点的排序结构如图。同理可得财产损失模块的贝叶斯网络结构如图所示。
 
-其次对不良社会影响模块进行分析
+其次对不良社会影响模块进行分析。根据专家知识可知，恐怖袭击事件造成的不良社会影响跟恐怖袭击事件造成的人员伤亡、财产损失，恐怖主义活动发生前是否威胁、恐吓或向大众传播某种恐怖消息，以及民众或反恐决策人员对恐怖袭击的知情程度密切相关。由此得到图\ref{不良社会影响模块的贝叶斯网络结构}所示的不良社会影响模块的贝叶斯网络结构。TA(terrorist atmosphere)是恐怖份子是否在恐怖活动前对大众造成恐吓或威胁；DK(degree of knowledge)是民众对恐怖袭击的知情程度。PD和TA的状态合集如\ref{不良社会影响模块}所示。根据专家知识，ASI,CeP和DK变量的状态合集如表：
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=.7\textwidth]{2.png}
+	\caption{不良社会影响模块的贝叶斯网络结构}
+	\label{不良社会影响模块的贝叶斯网络结构}
+\end{figure}
+%\begin{table}[!hbt]
+%	\centering
+%	\begin{ tabular }{p{2cm}<{\centering}p{4cm}<{\centering}p{2cm}<{\centering}p{4cm}<{\centering}}%{cccc}
+%		\toprule  %添加表格头部粗线
+%		node ID& node name& node size& node value\\
+%		\midrule  %添加表格中横线
+%		1& ASI& 4& 1=Minimal\\
+%		&&& 2=Minor\\
+%		&&& 3=Major\\
+%		&&& 4=Catastrophic\\
+%		2& CeP& 5& 1=None\\
+%		&&& 2= Minimal (1≦nkill<3 or 1≦nwound<10)\\
+%		&&& 3=Minor (3≦nkill<10 or 10≦nwound<50)\\
+%		&&& 4= Major (10≦nkill<30 or 30≦nwound<50) \\
+%		&&& 5= Catastrophic (nkill≧30 or nwound≧50) \\
+%		3& DK& 4& 1= Minimal \\
+%		&&& 2= Minor \\
+%		&&& 3= Major \\
+%		&&& 4= Catastrophic \\
+%		\bottomrule %添加表格底部粗线
+%	\end{ tabular }
+%	\label{不良社会影响模块}
+%\end{table} 
+
 
 设贝叶斯网络中某一节点$R$,它有$n$个取值，每个取值的先验概率为$p(r_i)$,且$\sum_{i=1}^np(r_i)=1$,节点$R$有一取$m$个值的子节点$S$,$p(S|R)$的条件概率矩阵为
 \begin{equation}
-	p(S|R)=
-	\left( \begin{matrix}
+	P=\left( \begin{matrix}
 	p_{11} & p_{12} & \cdots & p_{1m} \\ 
 	p_{21} & p_{22} & \cdots & p_{2m} \\ 
 	\vdots & \vdots & \ddots & \vdots \\ 
 	p_{n1} & p_{n2} & \cdots & p_{nm}
-	\end{matrix} \right) 
+	\end{matrix} \right).
 \end{equation}
 
+财产损失模块和人员伤亡模块贝叶斯网络，由于存在观测数据，可以从数据中学习参数的概率分布表，但没有与分级贝叶斯网络和不良社会影响模块贝叶斯网络相关的观测数据，所以这2个贝叶斯网络模块的概率分布表采用主观赋权法来确定。
+考虑多个专家给出$p(S|R)$的条件概率矩阵为
+\begin{equation}
+P^k=\left( \begin{matrix}
+p_{11} & p_{12} & \cdots & p_{1m} \\ 
+p_{21} & p_{22} & \cdots & p_{2m} \\ 
+\vdots & \vdots & \ddots & \vdots \\ 
+p_{n1} & p_{n2} & \cdots & p_{nm}
+\end{matrix} \right).
+\end{equation}
+
+其中$k=1,2,\cdots,q$表示专家的个数，设每个专家的权重为$H=(h_1,h_2,\cdots,h_q)^T$,其中$\sum_{k=1}^qh_k=1$.为了确定各条件概率值，建立优化模型：
+
+%谁来搞一下这个公式
+%\begin{gather}
+%\min L=\sum_{i=1}^np(a_i)\sum_{k=1}^q\sum_{j=1}^mh_k(p_{ij}-{p_{ij}^k)^2 \notag\\
+%	s.t\quad\sum_{j=1}^mp_{ij}=1(i=1,2,\cdots,n)\notag\\
+%	p_{ij}\ge\bigtriangleup 0(i=1,2,\cdots,n;j=1,2,\cdots,m)\\
+%\end{gather}
+%\begin{center}
+%\begin{equation} \label{eqn3}
+%\begin{split}
+%\min\slL&=\sum\limits_{i=1}^{n}p(a_i) \sum\limits_{k=1}^{q}\sum\limits_{j=1}^{m}h_k(p_i_j- p_{ij}^k)^2\\
+%\mathrm{s.t.}\sum\limits_{j=1}^{m}p_i_j&=1(i=1,2,\cdots,n),\\
+%p_i_j\geq 0(i=1,2,\cdots,n;j=i=1,2,\cdots,m)
+%\end{split}
+%\end{equation}
+%\end{center}
 
 
 
-
+该优化模型的目标是使条件概率矩阵与专家给出的条件概率之间的总偏差平方和最小。由$\frac{\partial L}{\partial p_{ij}}$得条件概率的主观概率为
+\begin{equation}
+	p_{ij}=\sum_{k=1}^{q}h_kp_{ij}^k(i=1,2,\cdots,n;j=1,2,\cdots,m).
+\end{equation}
 \subsection{问题求解}
+贝叶斯网络推理是概率分布的计算过程，即在给定模型中计算目标变量的后验概率。根据本文的多模块贝叶斯网络，可以从观测的事件出发逐层推理，得到置换节点的状态，最后推理得到恐怖袭击威胁等级。本文的多模块贝叶斯网络差异较大，因此针对不同的模块，本文选择不同的推理算法。对于分级贝叶斯网络模块，本文采用多树传播推理算法；其他3个贝叶斯网络模块采用联结树推理算法。联结树算法将有向图转换为树，从而大大减小了计算的复杂度，计算速度较快并且适用性强，对网络中存在多个查询节点进行推理时非常便捷。本文先将贝叶斯网络转化为联结树，然后对联结树上的消息传递过程进行定义，再计算概率，基本过程如下：
 
+1、建立Moral图：将有向图转换为无向图，找出每个节点的父节点并连接起来把所有的有向边改为无向边
+
+2、将Moral图三角化：三角化是指让图中不存在超过3个点的环。将大于等于4的环，取其中两个非相邻节点用无向边连接起来，进行Moral图的三角化，即对顶点的一一删除。具体规则为（1）成对的联结该顶点的相邻节点；（2）删除该节点，并添加边；（3）删除的顶点必须保证，所需要添加的边最少。
+
+3、在三角化的图中确定团：每个三角都代表了一个节点，两个相临的三角具有共同的边。这条边就成为两个节点之间的中间节点。如此就组成一张联通图。找到三角化后Moral图中构成联结树的所有团，团即为最大全联通子图，其中每对不同节点都有边相连。
 
 \section{问题二}
 \section{问题三}
