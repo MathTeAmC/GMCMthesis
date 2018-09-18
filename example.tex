@@ -379,6 +379,7 @@ $$	p_{ij}\geq 0(i=1,2,\cdots,n;j=1,2,\cdots,m)$$
 4.建立联结树
 
 根据已获得的关于恐怖袭击事件的证据信息$[X_1,X_2,\cdots,X_n]$，用联结树传播算法推理得到财产损失模块和人员伤亡模块的后验概率，然后根据这两个后验概率用消息传递算法推理得到不良社会影响的后验概率，最后，用子模块的结果得到分级贝叶斯网络中恐怖袭击危害性等级的后验概率，算法的过程如下：
+
 \IncMargin{1em} % 使得行号不向外突出 
 \begin{algorithm}
 	
@@ -409,8 +410,9 @@ $$	p_{ij}\geq 0(i=1,2,\cdots,n;j=1,2,\cdots,m)$$
 \end{algorithm}
 \DecMargin{1em}
 
-最后得到结果如表\ref{die},\ref{die2}
-\begin{table}[htbp]
+最后得到结果如表4和表5。
+
+\begin{table}[]
 	\centering
 	\caption{危害程度最高的十大恐怖袭击事件}
 	\begin{tabular}{ccc}
@@ -431,7 +433,7 @@ $$	p_{ij}\geq 0(i=1,2,\cdots,n;j=1,2,\cdots,m)$$
 	\end{tabular}%
 	\label{die}%
 \end{table}%
-\begin{table}[htbp]
+\begin{table}[]
 	\centering
 	\caption{典型事件危害级别}
 	\begin{tabular}{cc}
